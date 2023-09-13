@@ -7,7 +7,7 @@ import json
 # Get a role from a given reaction to a message 
 
 
-token = 'MTE1MDYzODU0MjA2MjYzNzA4Ng.Gzkuwr.iQQ2xbiwjpQ41oWyhkI9OZrjjYu09LmZH1p2Kc'
+token = ''
 
 intents = discord.Intents.default()
 intents.members = True 
