@@ -1,12 +1,14 @@
 import discord 
+from find_set import *
 from discord.ext import commands 
 import json
 
 #todo-list 
-# Get a youtube vid from a given msg 
 
+with open('tokens.json') as d:
+    data = json.load(d)
 
-token = ''
+token = data['disc-token'] 
 
 intents = discord.Intents.default()
 intents.members = True 
@@ -15,15 +17,15 @@ intents.message_content = True
 client = commands.Bot(command_prefix='?',intents=intents)
 
 # Bot id
-bot_id = 1150638542062637086
+bot_id = '1150638542062637086'
 
-@client.event
-async def on_message(message):
+#@client.event
+#async def on_message(message):
     #guild_id = message.guild_id
     #guild = discord.utils.find(lambda g:g.id==guild_id,client.guilds)
-    if message.author.id != bot_id:
+    #if message.author.id != bot_id:
         #await message.reply(message.created_at)
-        pass
+        #pass
 
 @client.event
 async def on_raw_reaction_add(payload):
@@ -32,10 +34,7 @@ async def on_raw_reaction_add(payload):
         guild_id = payload.guild_id
         guild = discord.utils.find(lambda g: g.id== guild_id,client.guilds)
 
-        if payload.emoji.name == 'Mario':
-            role = discord.utils.get(guild.roles, name='Mario')
-        else:
-            role = discord.utils.get(guild.roles,name=payload.emoji.name)
+        role = discord.utils.get(guild.roles,name=payload.emoji.name)
 
         if role is not None:
             member = discord.utils.find(lambda m: m.id == payload.user_id,guild.members)
@@ -67,8 +66,9 @@ async def find_move(ntx: str,char: str,move: str):
     await ntx.send(file=discord.File(gif))
 
 @client.command()
-async def find_set(ntx: str):
-    pass
+async def find_set(ntx: str,match: str):
+    msg = get_set("SSBM tournament "+match)
+    await ntx.send(msg)
 
 def load_moveset(char: str):
     char_data = f'./framedata-json/{char}.json'
@@ -106,4 +106,4 @@ def get_move(data,move: str):
          
 move_set = load_moveset('Fox')
 print(get_move(move_set,'dair'))
-#client.run(token)
+client.run(token)

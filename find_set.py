@@ -1,11 +1,15 @@
 from googleapiclient.discovery import build
+import json
 
-key = ''
+with open('tokens.json') as d:
+    data = json.load(d)
+
+key = str(data['tube-token'])
 service = 'youtube'
 service_ver = 'v3'
 # Create a build func
 
-def find_set(term: str):
+def get_set(term: str):
     tube = build(service,service_ver,developerKey=key)
 
     search = tube.search().list(
@@ -21,5 +25,4 @@ def find_set(term: str):
     
     return "https://www.youtube.com/watch?v="+ids[0]
 
-set_1 = find_set('SSBM tournament peach vs fox')
-print(set_1)
+print(get_set("SSBM tournament YoshivsFox"))
