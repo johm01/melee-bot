@@ -5,6 +5,12 @@ service = 'youtube'
 service_ver = 'v3'
 # Create a build func
 
+<<<<<<< HEAD
+=======
+def sort_views(views: list):
+    pass
+
+>>>>>>> b5dd0c28f7ce7764f037aad1b2b6cdc4dcd21c6f
 def get_views(url):
     tube = build(service,service_ver,developerKey=key)
     

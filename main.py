@@ -6,7 +6,7 @@ import json
 # Get a youtube vid from a given msg 
 
 
-token = 'MTE1MDYzODU0MjA2MjYzNzA4Ng.GgHiyT.y7iY6-tYhHPO4D-qQkzJ77FKf5KZOzAGy0xxCs'
+token = ''
 
 intents = discord.Intents.default()
 intents.members = True 
