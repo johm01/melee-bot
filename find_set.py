@@ -1,15 +1,12 @@
 from googleapiclient.discovery import build
-from bs4 import BeautifulSoup
-import requests
 
-key = 'AIzaSyDXq73Ca4uGdkP4z9SqkCJZHGMi60qFRlo'
+key = ''
 service = 'youtube'
 service_ver = 'v3'
 # Create a build func
 
 def sort_views(views: list):
     pass
-
 
 def get_views(url):
     tube = build(service,service_ver,developerKey=key)
