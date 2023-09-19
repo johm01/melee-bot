@@ -14,16 +14,11 @@ intents.message_content = True
 
 client = commands.Bot(command_prefix='?',intents=intents)
 
-# Bot id
-bot_id = 1150638542062637086
-
 @client.event
 async def on_message(message):
     #guild_id = message.guild_id
     #guild = discord.utils.find(lambda g:g.id==guild_id,client.guilds)
-    if message.author.id != bot_id:
-        #await message.reply(message.created_at)
-        pass
+    await message.reply(message)
 
 @client.event
 async def on_raw_reaction_add(payload):
@@ -66,9 +61,6 @@ async def find_move(ntx: str,char: str,move: str):
     await ntx.send(str(msg))
     await ntx.send(file=discord.File(gif))
 
-@client.command()
-async def find_set(ntx: str):
-    pass
 
 def load_moveset(char: str):
     char_data = f'./framedata-json/{char}.json'
@@ -106,4 +98,4 @@ def get_move(data,move: str):
          
 move_set = load_moveset('Fox')
 print(get_move(move_set,'dair'))
-#client.run(token)
+client.run(token)
