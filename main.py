@@ -83,24 +83,22 @@ def load_moveset(char: str):
 
 def get_move(data,move: str):
     move_found = None
-    if data:
-        for i in range(len(data)):
-            if data[i][0] == move:
-                msg = data[i][1]['totalFrames']
-                # Total frames
-                print(data[i][1]['totalFrames'])
-               
-                # A moves properties  
-                print(data[i][0])
+    
+    for i in range(len(data)):
+        if data[i][0] == move:
+            msg = data[i][1]['totalFrames']
+            # Total frames
+            print(data[i][1]['totalFrames'])
+           
+            # A moves properties  
+            print(data[i][0])
 
-                # All hit frames for a move 
-                for i in data[i][1]['hitFrames']:
-                    print(i['start'])
-                    print(i['end'])
-            else:
-                move_found = False
-    else:
-        msg = 'Char was not found'
+            # All hit frames for a move 
+            for i in data[i][1]['hitFrames']:
+                print(i['start'])
+                print(i['end'])
+        else:
+            move_found = False
 
     return msg
          
