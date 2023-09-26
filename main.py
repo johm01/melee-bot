@@ -1,9 +1,13 @@
 import discord 
+import json 
 from find_set import *
 from discord.ext import commands 
-import json
+
 
 #todo-list 
+
+role_emojis = ['Shiek','Mewtwo','Yoshi','Kirby','Game & Watch','Bowser','Ganondorf','Peach','Marth','Roy','Ice Climbers','DK'
+            ,'Mario','Luigi','Ness','Link','Young Link','Dr.Mario','Falco','Fox','Captain Falcon','Zelda','Samus','Jigglypuff','Pikachu','Pichu']
 
 with open('tokens.json') as d:
     data = json.load(d)
@@ -19,13 +23,15 @@ client = commands.Bot(command_prefix='?',intents=intents)
 # Bot id
 bot_id = '1150638542062637086'
 
-#@client.event
-#async def on_message(message):
-    #guild_id = message.guild_id
-    #guild = discord.utils.find(lambda g:g.id==guild_id,client.guilds)
-    #if message.author.id != bot_id:
-        #await message.reply(message.created_at)
-        #pass
+'''
+@client.event
+async def on_message(message):
+    guild_id = message.guild_id
+    guild = discord.utils.find(lambda g:g.id==guild_id,client.guilds)
+    if message.author.id != bot_id:
+        await message.reply(message.created_at)
+        pass
+'''
 
 @client.event
 async def on_raw_reaction_add(payload):
@@ -34,7 +40,8 @@ async def on_raw_reaction_add(payload):
         guild_id = payload.guild_id
         guild = discord.utils.find(lambda g: g.id== guild_id,client.guilds)
 
-        role = discord.utils.get(guild.roles,name=payload.emoji.name)
+        if payload.emoji.name in role_emojis:
+            role = discord.utils.get(guild.roles,name=payload.emoji.name)
 
         if role is not None:
             member = discord.utils.find(lambda m: m.id == payload.user_id,guild.members)
