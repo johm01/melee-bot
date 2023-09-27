@@ -1,6 +1,7 @@
 import discord 
 import json 
 from find_set import *
+from get_frames import * 
 from discord.ext import commands 
 
 #todo-list 
@@ -55,15 +56,19 @@ async def on_raw_reaction_remove(payload):
 
 @client.command()
 async def find_move(ntx: str,char: str,move: str):
-    msg = get_move(char,move)
-    gif = f'./gifs/{char}/{move}.gif'
+    try:
+        gif = f'./gifs/{char}/{move}.gif'
+        await ntx.send(file=discord.File(gif))
+    except:
+        await ntx.send('Move not found try putting the entire move into one word like this utilt/usmash')
 
-    await ntx.send(str(msg))
-    await ntx.send(file=discord.File(gif))
+@client.command()
+async def how_to_use(ntx: str):
+    await ntx.send('')
 
 @client.command()
 async def find_set(ntx: str,match: str):
-    msg = get_set("SSBM tournament "+match)
-    await ntx.send(msg)
+    msg = get_set('melee '+match)
+    await ntx.sennd(msg)
 
 client.run(token)
