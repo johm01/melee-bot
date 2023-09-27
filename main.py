@@ -64,7 +64,7 @@ async def find_move(ntx: str,char: str,move: str):
 
 @client.command()
 async def how_to_use(ntx: str):
-    await ntx.send('')
+    await ntx.send("To find a set type by two players like ?find_set ZainVsMango To find a moves data type it as ?find_move dtilt")
 
 @client.command()
 async def find_set(ntx: str,match: str):
