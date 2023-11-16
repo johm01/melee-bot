@@ -25,4 +25,4 @@ def get_set(term: str):
     
     return "https://www.youtube.com/watch?v="+ids[0]
 
-print(get_set("SSBM tournament YoshivsFox"))
+print(get_set("SSBM tournament MokyvsJmppop"))
